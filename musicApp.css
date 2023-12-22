@@ -1,0 +1,173 @@
+*{
+    margin: 0;padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0d1427;
+    /* background: #61133e; */
+    font-family: 'roboto', sans-serif;
+}
+#music-player{
+    width: 350px;
+    height: 550px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px cyan;
+    /* border: 1px solid #000; */
+    /* background: #000; */
+    padding: 30px;
+    overflow: hidden;
+    color: cyan !important;
+}
+.song-name, .artist-name{
+    text-align: center;
+    text-transform: capitalize;
+}
+.song-name{
+    font-size: 40px;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+.artist-name{
+    font-size: 20px;
+}
+.disk{
+    position: relative;
+    display: block;
+    margin:40px auto;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: url(/images/Mohbad_1.webp);
+    background-size: cover;
+    /* box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.08); */
+    box-shadow: 0 0 0 10px #00ffff41;
+    animation: rotate 10s linear infinite;
+    animation-play-state: paused;
+}
+.disk.play{
+    animation-play-state: running;
+}
+.disk::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #000;
+}
+.seek-bar{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    overflow: hidden;
+}
+.seek-bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 1px;
+    height: 20px;
+    background: yellow;
+    box-shadow: -400px 0 0 400px orangered;
+}
+.curr-time, .duration{
+    font-size: 14px;
+}
+.duration{
+    margin-left: 68%;
+}
+.controls{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+}
+.play-btn{
+    position: absolute;
+    /* margin: 50px 0 0 ; */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+.play-btn span{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 30px;
+    border-radius: 2px;
+    background: grey;
+    transition: .5s;
+    clip-path:  polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+.play-btn span:nth-child(2){
+    left: 55%;
+    transform-origin: center;
+}
+.play-btn.pause span:nth-child(2){
+    transform: translateY(-50%) scaleY(0);
+}
+.play-btn.pause span:nth-child(1){
+    width: 35%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 50%, 100% 50%, 0% 100%) ;
+}
+.play-btn.pause{
+    animation: pause 2s linear infinite;
+}
+.btn {
+    font-size: 30px;
+    margin: 0 40px;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: cyan;
+    border: none;
+    color: #0d1427;
+    cursor: pointer;
+}
+.cpr{
+    text-align: center;
+    margin-top: 50px;
+}
+@keyframes pause {
+    0%{box-shadow: 0;}
+    50%{box-shadow:0 0 0 5px rgba(255, 255, 255, 0.1) ; }
+    100%{box-shadow:0 0 0 5px rgba(255, 255, 255, 0.4) ; }
+}
+@keyframes rotate {
+    0%{transform: rotate(0);}
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (max-width: 320px) {
+
+    #music-player{
+    width: 300px;
+    height: 550px;}
+    .duration{
+        margin-left: 60%;
+    }
+}
